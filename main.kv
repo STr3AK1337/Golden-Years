@@ -1,0 +1,698 @@
+#:kivy 1.11.1
+
+<Label>:
+    font_size: 27.5
+    markup: True
+    halign: "center"
+    valign: "center"
+
+<Button>:
+    font_size: 20
+    text_size: self.size
+    markup: True
+    halign: "center"
+    valign: "center"
+    #color: 0.73725490196, 0.96862745098, 0.96470588235, 1
+    background_color: 0.23137254902, 0.30588235294, 0.56078431372, 1
+
+WindowManager:
+    SignUpWindow:
+    LogInWindow:
+    MainWindow:
+    CalendarWindow:
+    AddRemoveCalEventWindow:
+    AddRemoveExerciseWindow:
+    AddRemoveMedicationWindow:
+    BloodSugarWindow:
+    BloodSugarAddWindow:
+    BloodSugarRemoveWindow:
+
+<SignUpWindow>:
+    name: "signup"
+    FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 0.49803921568, 0.692, 0.98039215686, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            text: "[b][u]Golden Years[/u][/b]"
+            font_size: 35
+            color: 0, 0, 0, 1
+            pos_hint: {"x": 0.25, "top": 0.975}
+            size_hint: 0.5, 0.1
+
+        GridLayout:
+            pos_hint: {"x": 0.025, "top": 0.85}
+            size_hint: 0.95, 0.5
+            cols: 2
+            Label:
+                text: "[b]Username:[/b]"
+                color: 0, 0, 0, 1
+            TextInput:
+                id: username
+                multiline: False
+            Label:
+                text: "[b]Password:[/b]"
+                color: 0, 0, 0, 1
+            TextInput:
+                id: password
+                multiline: False
+                password: True
+            Label:
+                text: "[b]Email:[/b]"
+                color: 0, 0, 0, 1
+            TextInput:
+                id: email
+                multiline: False
+
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"x": 0.1, "top": 0.30}
+            text: "[b]Sign Up[/b]"
+            on_release: 
+                root.manager.transition.direction = "down"
+                root.signUp()
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"right": 0.9, "top": 0.30}
+            text: "[b]Already Have An Account[/b]"
+            on_release: 
+                app.root.current = "login"
+                root.manager.transition.direction = "left"
+
+<LogInWindow>:
+    name: "login"
+    FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 0.49803921568, 0.692, 0.98039215686, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            text: "[b][u]Golden Years[/u][/b]"
+            font_size: 35
+            color: 0, 0, 0, 1
+            pos_hint: {"x": 0.25, "top": 0.975}
+            size_hint: 0.5, 0.1
+
+        GridLayout:
+            pos_hint: {"x": 0.025, "top": 0.85}
+            size_hint: 0.95, 0.5
+            cols: 2
+            canvas.before:
+                Color: 
+                    rgba: 0.49803921568, 0.692, 0.98039215686, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: "[b]Username:[/b]"
+                color: 0, 0, 0, 1
+            TextInput:
+                id: username
+                multiline: False
+            Label:
+                text: "[b]Password:[/b]"
+                color: 0, 0, 0, 1
+            TextInput:
+                id: password
+                multiline: False
+                password: True
+                
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"x": 0.1, "top": 0.30}
+            text: "[b]Log In[/b]"
+            on_release: 
+                root.manager.transition.direction = "down"
+                root.logIn()
+
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"right": 0.9, "top": 0.30}
+            text: "[b]Create An Account[/b]"
+            on_release: 
+                app.root.current = "signup"
+                root.manager.transition.direction = "right"
+
+<MainWindow>:
+    name: "main"
+    FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 0.49803921568, 0.692, 0.98039215686, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            text: "[b][u]Golden Years[/u][/b]"
+            font_size: 35
+            color: 0, 0, 0, 1
+            pos_hint: {"x": 0.25, "top": 0.98}
+            size_hint: 0.5, 0.1
+        Button:
+            size_hint: 0.8, 0.35
+            font_size: 50
+            pos_hint: {"right": 0.9, "top": 0.875}
+            text: "[b]Calendar[/b]"
+            on_release: 
+                app.root.current = "calendar"
+                root.manager.transition.direction = "left"
+        Button:
+            size_hint: 0.8, 0.35
+            font_size: 50
+            pos_hint: {"right": 0.9, "top": 0.485}
+            text: "[b]Blood Sugar[/b]"
+            on_release: 
+                app.root.current = "bloodsugar"
+                root.manager.transition.direction = "left"
+        Button:
+            size_hint: 1, 0.1
+            font_size: 30
+            text: "[b]Log Out[/b]"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "up"
+
+<CalendarWindow>:
+    name: "calendar"
+    FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 0.49803921568, 0.692, 0.98039215686, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Button:
+            size_hint: 0.2, 0.125
+            pos_hint: {"top": 1}
+            font_size: 15
+            text: "[b]Back[/b]"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+        Button:
+            size_hint: 0.2, 0.085
+            pos_hint: {"top": 0.85}
+            font_size: 15
+            text: "[b]Previous[/b]"
+            on_release:
+                root.previous()
+        Button:
+            size_hint: 0.2, 0.085
+            pos_hint: {"top": 0.85, "right": 1}
+            font_size: 15
+            text: "[b]Next[/b]"
+            on_release:
+                root.next()
+        Button:
+            size_hint: 0.2, 0.125
+            pos_hint: {"top": 1, "right": 1}
+            font_size: 15
+            text: "[b]Refresh[/b]"
+            on_release:
+                root.refresh()
+        Button:
+            size_hint: 0.25, 0.125
+            pos_hint: {"x": 0.075, "bottom": 0}
+            font_size: 15
+            text: "[b]Add/Remove Calendar Event[/b]"
+            on_release:
+                app.root.current = "calevent"
+                root.manager.transition.direction = "left"
+        Button:
+            size_hint: 0.25, 0.125
+            pos_hint: {"x": 0.375, "bottom": 0}
+            font_size: 15
+            text: "[b]Add/Remove Exercise[/b]"
+            on_release:
+                app.root.current = "exercise"
+                root.manager.transition.direction = "left"
+        Button:
+            size_hint: 0.25, 0.125
+            pos_hint: {"x": 0.675, "bottom": 0}
+            font_size: 15
+            text: "[b]Add/Remove Medication[/b]"
+            on_release:
+                app.root.current = "medication"
+                root.manager.transition.direction = "left"
+<AddRemoveCalEventWindow>:
+    name: "calevent"
+    FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 0.49803921568, 0.692, 0.98039215686, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Button:
+            size_hint: 0.2, 0.125
+            pos_hint: {"top": 1}
+            font_size: 15
+            text: "[b]Back[/b]"
+            on_release:
+                app.root.current = "calendar"
+                root.manager.transition.direction = "right"
+
+        GridLayout:
+            pos_hint: {"x": 0.025, "top": 0.85}
+            size_hint: 0.95, 0.55
+            cols: 2
+            Label:
+                text: "[b]Name:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: name
+                multiline: False
+            Label:
+                text: "[b]Location:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: location
+                multiline: False
+            Label:
+                text: "[b]Note:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: note
+                multiline: False
+            Label:
+                text: "[b]Time(HH:MM):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: time
+                multiline: False
+            Label:
+                text: "[b]Date(YYYY/MM/DD):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: date
+                multiline: False
+
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"x": 0.1, "top": 0.25}
+            text: "[b]Add Event[/b]"
+            on_release: 
+                root.add()
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"right": 0.9, "top": 0.25}
+            text: "[b]Remove Event[/b]"
+            on_release: 
+                root.remove()
+
+<AddRemoveExerciseWindow>:
+    name: "exercise"
+    FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 0.49803921568, 0.692, 0.98039215686, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Button:
+            size_hint: 0.2, 0.125
+            pos_hint: {"top": 1}
+            font_size: 15
+            text: "[b]Back[/b]"
+            on_release:
+                app.root.current = "calendar"
+                root.manager.transition.direction = "right"
+        
+        GridLayout:
+            pos_hint: {"x": 0.025, "top": 0.85}
+            size_hint: 0.95, 0.55
+            cols: 2
+            Label:
+                text: "[b]Name:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: name
+                multiline: False
+            Label:
+                text: "[b]Location:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: location
+                multiline: False
+            Label:
+                text: "[b]Note:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: note
+                multiline: False
+            Label:
+                text: "[b]Time(HH:MM):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: time
+                multiline: False
+            Label:
+                text: "[b]Date(YYYY/MM/DD):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: date
+                multiline: False
+            Label:
+                text: "[b]Exercise Name:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: eName
+                multiline: False
+            Label:
+                text: "[b]Exercise Type:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: eType
+                multiline: False
+            Label:
+                text: "[b]Sets:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: sets
+                multiline: False
+            Label:
+                text: "[b]Reps:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: reps
+                multiline: False
+
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"x": 0.1, "top": 0.25}
+            text: "[b]Add Exercise[/b]"
+            on_release: 
+                root.add()
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"right": 0.9, "top": 0.25}
+            text: "[b]Remove Exercise[/b]"
+            on_release: 
+                root.remove()
+
+<AddRemoveMedicationWindow>:
+    name: "medication"
+    FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 0.49803921568, 0.692, 0.98039215686, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Button:
+            size_hint: 0.2, 0.125
+            pos_hint: {"top": 1}
+            font_size: 15
+            text: "[b]Back[/b]"
+            on_release:
+                app.root.current = "calendar"
+                root.manager.transition.direction = "right"
+
+        GridLayout:
+            pos_hint: {"x": 0.025, "top": 0.85}
+            size_hint: 0.95, 0.55
+            cols: 2
+            Label:
+                text: "[b]Name:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: name
+                multiline: False
+            Label:
+                text: "[b]Location:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: location
+                multiline: False
+            Label:
+                text: "[b]Note:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: note
+                multiline: False
+            Label:
+                text: "[b]Time(HH:MM):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: time
+                multiline: False
+            Label:
+                text: "[b]Date(YYYY/MM/DD):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: date
+                multiline: False
+            Label:
+                text: "[b]Medication Name:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: mName
+                multiline: False
+            Label:
+                text: "[b]Medication Type:[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: mType
+                multiline: False
+            Label:
+                text: "[b]Dose(XX.XX):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: dose
+                multiline: False
+
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"x": 0.1, "top": 0.25}
+            text: "[b]Add Medication[/b]"
+            on_release: 
+                root.add()
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"right": 0.9, "top": 0.25}
+            text: "[b]Remove Medication[/b]"
+            on_release: 
+                root.remove()
+
+<BloodSugarWindow>:
+    name: "bloodsugar"
+    FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 0.49803921568, 0.692, 0.98039215686, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Button:
+            size_hint: 0.2, 0.125
+            pos_hint: {"top": 1}
+            font_size: 15
+            text: "[b]Back[/b]"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+        Button:
+            size_hint: 0.2, 0.125
+            pos_hint: {"top": 1, "right": 1}
+            font_size: 15
+            text: "[b]Refresh[/b]"
+            on_release:
+                root.refresh()
+        Button:
+            size_hint: 0.5, 0.125
+            pos_hint: {"x": 0.25, "top": 1}
+            font_size: 15
+            text: "[b]Add Measurement[/b]"
+            on_release:
+                app.root.current = "bloodsugaradd"
+                root.manager.transition.direction = "left"
+        Button:
+            size_hint: 0.5, 0.125
+            pos_hint: {"x": 0.25, "bottom": 0}
+            font_size: 15
+            text: "[b]Remove Measurement[/b]"
+            on_release:
+                app.root.current = "bloodsugarremove"
+                root.manager.transition.direction = "left"
+        Label:
+            text: "Ten day average is: "
+            pos_hint:{"x": 0.45, "top": 0.55}
+            size_hint: 0.1, 0.1
+            font_size: 25
+            color: 0, 0, 0, 1
+        Label:
+            text: "Last measurement: "
+            pos_hint:{"x": 0.45, "top": 0.45}
+            size_hint: 0.1, 0.1
+            font_size: 25
+            color: 0, 0, 0, 1
+        Label:
+            text: "Added on: "
+            pos_hint:{"x": 0.45, "top": 0.4}
+            size_hint: 0.1, 0.1
+            font_size: 25
+            color: 0, 0, 0, 1
+
+<BloodSugarAddWindow>:
+    name: "bloodsugaradd"
+    FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 0.49803921568, 0.692, 0.98039215686, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Button:
+            size_hint: 0.2, 0.125
+            pos_hint: {"top": 1}
+            font_size: 15
+            text: "[b]Back[/b]"
+            on_release:
+                app.root.current = "bloodsugar"
+                root.manager.transition.direction = "right"
+        GridLayout:
+            pos_hint: {"x": 0.025, "top": 0.85}
+            size_hint: 0.95, 0.5
+            cols: 2
+            Label:
+                text: "[b]Date(YYYY/MM/DD):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: date
+                multiline: False
+            Label:
+                text: "[b]Time(HH:MM):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: time
+                multiline: False
+            Label:
+                text: "[b]Measurement(XX.XX):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: measurement
+                multiline: False
+
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"x": 0.325, "top": 0.30}
+            text: "[b]Add Measurement[/b]"
+            on_release: 
+                root.add()
+<BloodSugarRemoveWindow>:
+    name: "bloodsugarremove"
+    FloatLayout:
+        canvas.before:
+            Color: 
+                rgba: 0.49803921568, 0.692, 0.98039215686, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Button:
+            size_hint: 0.2, 0.125
+            pos_hint: {"top": 1}
+            font_size: 15
+            text: "[b]Back[/b]"
+            on_release:
+                app.root.current = "bloodsugar"
+                root.manager.transition.direction = "right"
+        GridLayout:
+            pos_hint: {"x": 0.025, "top": 0.85}
+            size_hint: 0.95, 0.5
+            cols: 2
+            Label:
+                text: "[b]Date(YYYY/MM/DD):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: date
+                multiline: False
+            Label:
+                text: "[b]Time(HH:MM):[/b]"
+                font_size: 17.5
+                color: 0, 0, 0, 1
+            TextInput:
+                id: time
+                multiline: False
+        Button:
+            size_hint: 0.35, 0.25
+            pos_hint: {"x": 0.325, "top": 0.30}
+            text: "[b]Delete[/b]"
+            on_release: 
+                root.delete()
+<PUsername>:
+    Label:
+        font_size: 20
+        text: "\nUsername Already in Use"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+<PEmail>:
+    Label:
+        font_size: 20
+        text: "\nEmail Already in Use"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+<PLog>:
+    Label:
+        font_size: 20
+        text: "\nInavlid Username and/or Password"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+<PBSugar>:
+    Label:
+        font_size: 20
+        text: "\nDate and Time Already Exist or Missing Fields"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+<PRBSugar>:
+    Label:
+        font_size: 20
+        text: "\nMeasurement Does Not Exist"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+<PEvent>:
+    Label:
+        font_size: 20
+        text: "\nDate and Time Exist or Missing Fields"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+<PREvent>:
+    Label:
+        font_size: 20
+        text: "\nEvent does not exist"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
